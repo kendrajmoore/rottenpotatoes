@@ -1,0 +1,20 @@
+<h1>Reviews</h1>
+
+<a href="/reviews/new">New Review</a>
+<br>
+{{#each reviews}}
+<div class="col-sm-3">
+
+  <a href="/reviews/{{this._id}}">
+    <h3>{{this.title}}</h3></a>
+    <small>{{this.movieTitle}}</small>
+    <p>{{this.description}}</p>
+
+    <button onclick="location.href='/reviews/{{this._id}}/edit'" type="button">
+     Edit</button>
+    <form method="POST" action="/reviews/{{this._id}}?_method=DELETE">
+        <button type="submit">Delete</button>
+    </form>
+  <hr>
+</div>
+{{/each}}
