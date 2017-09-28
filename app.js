@@ -6,37 +6,20 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'))
 
-
-// var reviews = [
-//   { title: "Great Review" },
-//   { title: "Next Review" },
-//   { title: "Okay Review"}
-// ]
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes');
 
-
-var Review = mongoose.model('Review', {
-  title: String,
-  movieTitle: String,
-  description: String,
-  rating: Number
-});
-
 app.get('/', function (req, res) {
   Review.find(function(err, reviews) {
     res.render('reviews-index', {reviews: reviews});
   })
 })
+/
+require('./controllers/reviews')(app);
 
-app.post('/reviews', function (req, res) {
-  Review.create(req.body, function(err, review) {
-    res.redirect('/reviews/' + review._id);
-  })
-})
 
 // NEW
 app.get('/reviews/new', function (req, res) {
