@@ -22,38 +22,38 @@ require('./controllers/reviews')(app);
 
 
 // NEW
-app.get('/reviews/new', function (req, res) {
-  res.render('reviews-new', {});
-})
+// app.get('/reviews/new', function (req, res) {
+//   res.render('reviews-new', {});
+// })
 
 // SHOW
-app.get('/reviews/:id', function (req, res) {
-  Review.findById(req.params.id).exec(function (err, review) {
-    res.render('reviews-show', {review: review});
-  })
-});
+// app.get('/reviews/:id', function (req, res) {
+//   Review.findById(req.params.id).exec(function (err, review) {
+//     res.render('reviews-show', {review: review});
+//   })
+// });
 
-//UPDATE
-app.put('/reviews/:id', function (req, res) {
-    console.log(req.body)
-  Review.findByIdAndUpdate(req.params.id,  req.body, function(err, review) {
-    res.redirect('/reviews/' + review._id);
-  })
-})
+// //UPDATE
+// app.put('/reviews/:id', function (req, res) {
+//     console.log(req.body)
+//   Review.findByIdAndUpdate(req.params.id,  req.body, function(err, review) {
+//     res.redirect('/reviews/' + review._id);
+//   })
+// })
 
 //EDIT
-app.get('/reviews/:id/edit', function (req, res) {
-  Review.findById(req.params.id, function(err, review) {
-    res.render('reviews-edit', {review: review});
-  })
-})
+// app.get('/reviews/:id/edit', function (req, res) {
+//   Review.findById(req.params.id, function(err, review) {
+//     res.render('reviews-edit', {review: review});
+//   })
+// })
 
 // DELETE
-app.delete('/reviews/:id', function (req, res) {
-  Review.findByIdAndRemove(req.params.id, function(err) {
-    res.redirect('/');
-  })
-})
+// app.delete('/reviews/:id', function (req, res) {
+//   Review.findByIdAndRemove(req.params.id, function(err) {
+//     res.redirect('/');
+//   })
+// })
 
 app.listen(process.env.PORT || 3000, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
